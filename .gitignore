@@ -18,6 +18,7 @@ source_files/*.pbf
 
 # Large files - do not commit ComStock results
 datasets/comstock
+datasets/test_data
 !datasets/comstock/README.md
 
 # added by MSweeney
