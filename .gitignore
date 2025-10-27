@@ -1,0 +1,31 @@
+__pycache__
+.env
+.idea
+.python-version
+.ruff_cache
+.vscode
+.DS_Store
+~$*
+*.whl
+
+cache
+dist
+test_output.ipynb
+test_output.html
+
+# don't save any of the large files
+source_files/*.pbf
+
+# Large files - do not commit ComStock results
+datasets/comstock
+!datasets/comstock/README.md
+
+# added by MSweeney
+sampledata
+~*.xlsx
+_archive
+process
+urdb_rate_*.json
+
+# don't save output images (can rerun to create)
+datasets/outputs/*.png
