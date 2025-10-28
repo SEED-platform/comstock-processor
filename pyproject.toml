@@ -4,9 +4,7 @@ version = "0.1.0"
 description = "A tool to download and process ComStock data."
 authors = ["Nicholas Long <nllong>"]
 license = "BSD"
-packages = [
-    { include = "lib" }
-]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -60,7 +58,6 @@ addopts = [
 ]
 testpaths = ["tests"]
 markers = [
-    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
     "integration: marks tests as integration tests that download data",
     "unit: marks tests as fast unit tests"
 ]

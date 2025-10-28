@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from lib.comstock_processor import ComStockProcessor
+from comstock_processor import ComStockProcessor
 
 
 @pytest.fixture
@@ -29,8 +29,6 @@ def test_data_dir():
 @pytest.fixture
 def sample_processor(test_data_dir):
     """Create a ComStockProcessor instance with small dataset for testing."""
-    processor_dir = test_data_dir / "delaware_small_office"
-    processor_dir.mkdir(exist_ok=True)
 
     return ComStockProcessor(
         state="DE",  # Delaware is a small state with fewer buildings
@@ -44,8 +42,6 @@ def sample_processor(test_data_dir):
 @pytest.fixture
 def california_processor(test_data_dir):
     """Create a ComStockProcessor instance for California testing."""
-    processor_dir = test_data_dir / "california_all"
-    processor_dir.mkdir(exist_ok=True)
 
     return ComStockProcessor(state="CA", county_name="All", building_type="All", upgrade="0", base_dir=test_data_dir)
 
@@ -56,19 +52,17 @@ class TestComStockProcessor:
     @pytest.mark.unit
     def test_initialization(self, test_data_dir):
         """Test that ComStockProcessor initializes correctly."""
-        processor_dir = test_data_dir / "test_initialization"
-        processor_dir.mkdir(exist_ok=True)
 
         processor = ComStockProcessor(
-            state="CA", county_name="Los Angeles", building_type="MediumOffice", upgrade="0", base_dir=processor_dir
+            state="CA", county_name="Los Angeles", building_type="MediumOffice", upgrade="0", base_dir=test_data_dir
         )
 
         assert processor.state == "CA"
         assert processor.county_name == "Los Angeles"
         assert processor.building_type == "MediumOffice"
         assert processor.upgrade == "0"
-        assert processor.base_dir == processor_dir
-        assert processor_dir.exists()  # Directory should be created
+        assert processor.base_dir == test_data_dir
+        assert test_data_dir.exists()  # Directory should be created
 
         # Check URLs are constructed correctly
         expected_base = "https://oedi-data-lake.s3.amazonaws.com/nrel-pds-building-stock/end-use-load-profiles-for-us-building-stock/2024/comstock_amy2018_release_1/"
@@ -141,8 +135,8 @@ class TestComStockProcessor:
         # Take only first 2 buildings for testing to keep it fast
         small_sample = metadata_df.head(2)
 
-        # Create timeseries directory
-        timeseries_dir = sample_processor.base_dir / "timeseries"
+        # Create time_series_data directory
+        timeseries_dir = sample_processor.base_dir / "time_series_data"
         timeseries_dir.mkdir(exist_ok=True)
 
         # Test the time series download
@@ -193,8 +187,6 @@ class TestComStockProcessor:
     def test_different_state_filters(self, test_data_dir):
         """Test that different state filters work correctly."""
         # Test with a different state
-        processor_dir = test_data_dir / "new_york_all"
-        processor_dir.mkdir(exist_ok=True)
 
         processor_ny = ComStockProcessor(state="NY", county_name="All", building_type="All", upgrade="0", base_dir=test_data_dir)
 
@@ -206,8 +198,6 @@ class TestComStockProcessor:
 
     def test_building_type_filter(self, test_data_dir):
         """Test that building type filtering works correctly."""
-        processor_dir = test_data_dir / "delaware_medium_office"
-        processor_dir.mkdir(exist_ok=True)
 
         processor = ComStockProcessor(
             state="DE",  # Small state for faster testing
@@ -224,8 +214,6 @@ class TestComStockProcessor:
 
     def test_error_handling_invalid_state(self, test_data_dir):
         """Test handling of invalid state codes."""
-        processor_dir = test_data_dir / "invalid_state"
-        processor_dir.mkdir(exist_ok=True)
 
         processor = ComStockProcessor(
             state="XX",  # Invalid state code
@@ -243,8 +231,6 @@ class TestComStockProcessor:
 
     def test_all_state_filter(self, test_data_dir):
         """Test that 'All' state filter works and returns multiple states."""
-        processor_dir = test_data_dir / "all_states_small_office"
-        processor_dir.mkdir(exist_ok=True)
 
         processor = ComStockProcessor(
             state="All",
@@ -263,7 +249,7 @@ class TestComStockProcessor:
 
     def test_empty_dataframe_time_series(self, sample_processor):
         """Test time series processing with empty DataFrame."""
-        timeseries_dir = sample_processor.base_dir / "timeseries"
+        timeseries_dir = sample_processor.base_dir / "time_series_data"
         timeseries_dir.mkdir(exist_ok=True)
 
         # Create empty DataFrame with required columns

@@ -1,4 +1,9 @@
 """
+ComStock Processor - A tool to download and process ComStock data.
+
+This package provides utilities for downloading metadata and time series data
+from NREL's ComStock dataset hosted on AWS S3.
+
 @author: nllong
 """
 
