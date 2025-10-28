@@ -62,7 +62,7 @@ jobs:
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             export PATH="$HOME/.local/bin:/c/Users/runneradmin/AppData/Roaming/Python/Scripts:$PATH"
           fi
-          poetry run pytest tests/ -v --tb=short -m "integration and not slow"
+          poetry run pytest tests/ -v --tb=short -m "integration"
       - name: Run integration tests with large data download
         env:
           TEST_DATA: "true"
@@ -70,7 +70,7 @@ jobs:
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             export PATH="$HOME/.local/bin:/c/Users/runneradmin/AppData/Roaming/Python/Scripts:$PATH"
           fi
-          poetry run pytest tests/ -v --tb=short -m "slow and integration" || true
+          poetry run pytest tests/ -v --tb=short -m "integration" || true
       # Running notebook will download the comstock data and run
       # the entire notebook. It will take ~10 minutes to run on CI because
       # the data are downloaded every time.

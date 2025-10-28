@@ -108,23 +108,19 @@ Run specific test categories:
 poetry run pytest tests/ -m "unit" -v
 
 # Integration tests (downloads small datasets)
-poetry run pytest tests/ -m "integration and not slow" -v
+poetry run pytest tests/ -m "integration" -v
 
 # All tests including large dataset downloads
-TEST_DATA=true poetry run pytest tests/ -m "slow and integration" -v
+TEST_DATA=true poetry run pytest tests/ -m "integration" -v
 
-# Run all tests (excluding slow ones)
-poetry run pytest tests/ -v
-
-# Run all tests including slow ones
-TEST_DATA=true poetry run pytest tests/ -v
+# Run all tests
+poetry run pytest tests -v
 ```
 
 ### Test Categories
 
 - **Unit tests**: Fast tests that verify initialization and basic functionality
 - **Integration tests**: Tests that download and process real ComStock data
-- **Slow tests**: Comprehensive tests with larger datasets (California data)
 
 ### Committing
 
