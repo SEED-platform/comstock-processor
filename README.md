@@ -64,7 +64,7 @@ for d in [base_dir, timeseries_dir]:
 # Initialize processor for California data
 processor = ComStockProcessor(
     state="CA",
-    county_name="All", 
+    county_name="All",
     building_type="All",
     upgrade="0",
     base_dir=base_dir
@@ -75,7 +75,7 @@ metadata_df = processor.process_metadata(save_dir=base_dir)
 
 # Download time series data for buildings in metadata
 paths, building_ids = processor.process_building_time_series(
-    metadata_df, 
+    metadata_df,
     save_dir=timeseries_dir
 )
 ```
@@ -94,6 +94,37 @@ The processor downloads data from the ComStock dataset hosted on AWS S3:
 - **Efficient Filtering**: Uses pandas parquet filtering for large datasets
 
 ## Development
+
+## Testing
+
+The ComStock processor includes comprehensive unit and integration tests that validate the downloading and processing functionality.
+
+### Running Tests
+
+Run specific test categories:
+
+```bash
+# Unit tests only (fast)
+poetry run pytest tests/ -m "unit" -v
+
+# Integration tests (downloads small datasets)
+poetry run pytest tests/ -m "integration and not slow" -v
+
+# All tests including large dataset downloads
+TEST_DATA=true poetry run pytest tests/ -m "slow and integration" -v
+
+# Run all tests (excluding slow ones)
+poetry run pytest tests/ -v
+
+# Run all tests including slow ones
+TEST_DATA=true poetry run pytest tests/ -v
+```
+
+### Test Categories
+
+- **Unit tests**: Fast tests that verify initialization and basic functionality
+- **Integration tests**: Tests that download and process real ComStock data
+- **Slow tests**: Comprehensive tests with larger datasets (California data)
 
 ### Committing
 
