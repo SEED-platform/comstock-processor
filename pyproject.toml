@@ -28,7 +28,7 @@ plotly = "^6.3.0"
 xlwings = "^0.33.14"
 psutil = "^7.0.0"
 nrel-pysam = "^7.1.0"
-pyarrow = "^21.0.0"
+pyarrow = "^22.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.1"
