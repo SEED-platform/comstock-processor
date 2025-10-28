@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from lib.comstock_processor import ComStockProcessor
+from comstock_processor import ComStockProcessor
 
 
 @pytest.fixture

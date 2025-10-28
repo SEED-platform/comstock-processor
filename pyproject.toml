@@ -4,9 +4,7 @@ version = "0.1.0"
 description = "A tool to download and process ComStock data."
 authors = ["Nicholas Long <nllong>"]
 license = "BSD"
-packages = [
-    { include = "lib" }
-]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.12"
