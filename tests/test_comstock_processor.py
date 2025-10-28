@@ -135,8 +135,8 @@ class TestComStockProcessor:
         # Take only first 2 buildings for testing to keep it fast
         small_sample = metadata_df.head(2)
 
-        # Create timeseries directory
-        timeseries_dir = sample_processor.base_dir / "timeseries"
+        # Create time_series_data directory
+        timeseries_dir = sample_processor.base_dir / "time_series_data"
         timeseries_dir.mkdir(exist_ok=True)
 
         # Test the time series download
@@ -249,7 +249,7 @@ class TestComStockProcessor:
 
     def test_empty_dataframe_time_series(self, sample_processor):
         """Test time series processing with empty DataFrame."""
-        timeseries_dir = sample_processor.base_dir / "timeseries"
+        timeseries_dir = sample_processor.base_dir / "time_series_data"
         timeseries_dir.mkdir(exist_ok=True)
 
         # Create empty DataFrame with required columns
