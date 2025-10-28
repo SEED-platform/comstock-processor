@@ -12,10 +12,14 @@ pandas = ">2"
 requests = "~2.32"
 pathlib = "^1.0.1"
 geopandas = "^1.1.1"
-fastparquet = "^2024.5.0"
 tqdm = "^4.67.1"
 seaborn = "^0.13.2"
 matplotlib = "^3.10.7"
+
+# although not called directory, these are
+# needed for processing parquet files
+fastparquet = "^2024.5.0"
+pyarrow = "^22.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.1"
