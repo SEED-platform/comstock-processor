@@ -11,21 +11,14 @@ python = "^3.12"
 pandas = ">2"
 requests = "~2.32"
 pathlib = "^1.0.1"
-
-fastparquet = "^2024.5.0"
-seaborn = "^0.13.2"
-openpyxl = "^3.1.5"
-scikit-learn = "^1.7.1"
-jinja2 = "^3.1.4"
-tabulate = "^0.9.0"
 geopandas = "^1.1.1"
-nbformat = "^5.10.4"
 tqdm = "^4.67.1"
-jupyter = "^1.1.1"
-plotly = "^6.3.0"
-xlwings = "^0.33.14"
-psutil = "^7.0.0"
-nrel-pysam = "^7.1.0"
+seaborn = "^0.13.2"
+matplotlib = "^3.10.7"
+
+# although not called directory, these are
+# needed for processing parquet files
+fastparquet = "^2024.5.0"
 pyarrow = "^22.0.0"
 
 [tool.poetry.group.dev.dependencies]
@@ -34,6 +27,8 @@ pytest-mock = "^3.10.0"
 mypy = "^1.17"
 pre-commit = "^4.3.0"
 ipykernel = "^7.1.0"
+jupyter = "^1.1.1"
+nbformat = "^5.10.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
