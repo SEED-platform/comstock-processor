@@ -117,7 +117,7 @@ class ComStockProcessor:
                 return save_path, building_id
 
             building_time_series_file = (
-                f"{self.time_series_url}/by_state/upgrade={self.upgrade}/state={self.state}/{building_id}-{self.upgrade}.parquet"
+                f"{self.time_series_url}/by_state/upgrade={self.upgrade}/state={row['in.state']}/{building_id}-{self.upgrade}.parquet"
             )
             self.download_file(building_time_series_file, save_path)
             return save_path, building_id
